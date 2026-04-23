@@ -1,20 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Colors } from './src/theme/Colors';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './src/navigation/AppNavigator';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { LoadingScreen } from './src/screens/LoadingScreen';
+import { useState } from 'react';
+
+// ← poza komponentem, tworzony raz
+const queryClient = new QueryClient();
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        {isLoading ? (
+          <LoadingScreen
+            onAnimationFinish={() => setIsLoading(false)}
+            fadeInDuration={800}
+            pauseDuration={1500}
+            startScale={0.6}
+          />
+        ) : (
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
+        )}
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
