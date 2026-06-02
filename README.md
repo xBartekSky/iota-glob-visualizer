@@ -1,94 +1,97 @@
-#  IOTA Network Explorer & 3D Visualizer
+# IOTA Network Explorer & 3D Visualizer
 
-Aplikacja mobilna stworzona w React Native (Expo), służąca do wizualizacji infrastruktury sieci IOTA. Projekt łączy grafikę 3D z analizą danych blockchain w czasie rzeczywistym.
 
-##  Kluczowe funkcje
+https://github.com/user-attachments/assets/739f24bc-0274-452a-af09-602ad8194668
 
-- **Interaktywny Glob 3D:** Wizualizacja położeń walidatorów na żywo przy użyciu silnika `@react-three/fiber`.
-- **Klastrowanie Walidatorów:** Inteligentne grupowanie blisko położonych węzłów dla zachowania czytelności mapy.
-- **Kalkulator Stakingu:** Narzędzie do estymacji nagród (APY) w ujęciu dziennym, miesięcznym i rocznym.
-- **Dashboard Sieci:** Tabela z sortowaniem i wyszukiwaniem aktywnych walidatorów (Stake, Voting Power, Komisja).
-- **Live Blocks:** Podgląd najnowszych checkpointów i transakcji w sieci IOTA.
-- **Automatyczna Geolokalizacja:** Wykrywanie fizycznej lokalizacji serwerów na podstawie ich adresów sieciowych.
 
-##  Stack Technologiczny
+A mobile application built with React Native (Expo) designed to visualize the IOTA network infrastructure. The project combines 3D graphics with real-time blockchain data analysis.
+
+## Key Features
+
+- **Interactive 3D Globe:** Real-time visualization of validator locations using the `@react-three/fiber` engine.
+- **Validator Clustering:** Intelligent grouping of closely located nodes to maintain map readability.
+- **Staking Calculator:** A tool for estimating rewards (APY) on a daily, monthly, and yearly basis.
+- **Network Dashboard:** A table with sorting and searching capabilities for active validators (Stake, Voting Power, Commission).
+- **Live Blocks:** Real-time preview of the latest checkpoints and transactions in the IOTA network.
+- **Automatic Geolocation:** Detection of physical server locations based on their network addresses.
+
+## Tech Stack
 
 - **Framework:** React Native (Expo)
-- **Język:** TypeScript
-- **Silnik 3D:** Three.js / React Three Fiber
-- **Testy:** Jest & React Native Testing Library
-- **Komunikacja:** JSON-RPC 2.0 (Fetch API)
+- **Language:** TypeScript
+- **3D Engine:** Three.js / React Three Fiber
+- **Testing:** Jest & React Native Testing Library
+- **Communication:** JSON-RPC 2.0 (Fetch API)
 
-##  Decyzje techniczne 
+## Technical Decisions
 
-Zdecydowałem się na poniższe rozwiązania, aby zapewnić najwyższą jakość kodu i UX:
+I chose the following solutions to ensure the highest code quality and UX:
 
-* **Wizualizacja 3D (React Three Fiber):** Wykorzystanie WebGL pozwala na płynne renderowanie przy 60 FPS, co nadaje aplikacji nowoczesny, profesjonalny charakter.
-* **Klastrowanie (Supercluster):** Walidatorzy często znajdują się w tych samych centrach danych. Użyłem klastrowania, aby mapa pozostała czytelna – zamiast setek nakładających się punktów, użytkownik widzi przejrzyste grupy (wieksze punkty na globie).
-* **Architektura .env:** Cała konfiguracja (linki RPC, API geolokalizacji) jest wydzielona do zmiennych środowiskowych. Aplikacja jest gotowa do przełączenia między sieciami Mainnet/Testnet.
-* **Wydajność (Memoizacja):** Użyłem `useMemo` oraz `useCallback` przy ciężkich obliczeniach na danych z sieci, aby zminimalizować zużycie procesora i baterii w urządzeniu mobilnym.
+* **3D Visualization (React Three Fiber):** Using WebGL allows for smooth rendering at 60 FPS, giving the app a modern, professional look.
+* **Clustering (Supercluster):** Validators are often located in the same data centers. I used clustering to keep the map readable – instead of hundreds of overlapping points, the user sees clear groups (larger points on the globe).
+* **.env Architecture:** All configuration (RPC links, geolocation APIs) is extracted into environment variables. The app is ready to switch between Mainnet and Testnet.
+* **Performance (Memoization):** I used `useMemo` and `useCallback` for heavy network data calculations to minimize CPU and battery usage on the mobile device.
 
-##  Instalacja i uruchomienie
+## Installation and Setup
 
-### 1️⃣ Klonowanie repozytorium
+### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/xBartekSky/iota-glob-visualizer.git
+git clone [https://github.com/xBartekSky/iota-glob-visualizer.git](https://github.com/xBartekSky/iota-glob-visualizer.git)
 cd iota-glob-visualizer
 ```
 
-### 2️⃣ Instalacja zależności
+### 2️⃣ Install dependencies
 
 ```bash
 npm install
 ```
 
-W przypadku problemów z peer dependencies, użyj
+If you encounter peer dependency issues, run:
 
 ```bash
 npm install --legacy-peer-deps
 ```
 
-### 3️⃣ Konfiguracja zmiennych środowiskowych
-Klonowanie przygotowanego szablonu 
+### 3️⃣ Configure environment variables
+Clone the provided template:
 ```bash
 cp .env.example .env
 ```
 
 > [!TIP]
-> Plik .env.example zawiera już publiczne adresy dla sieci IOTA Mainnet, więc aplikacja jest gotowa do działania natychmiast po skopiowaniu.
+> The .env.example file already contains public addresses for the IOTA Mainnet, so the application is ready to run immediately after copying.
 
-### 4️⃣ Uruchomienie apliakcji
+### 4️⃣ Start the application
 
 ```bash
 npx expo start
 ```
 
-## Uruchomienie na urządzeniach
+## Running on Devices
+The application can be tested on both a simulator and a physical phone using the Expo environment.
 
-Aplikację można przetestować zarówno na symulatorze, jak i na fizycznym telefonie dzięki środowisku **Expo**.
+### 1️⃣ On a physical phone (Recommended)
+This is the best way to experience the smooth performance of the 3D globe visualization:
+1. Install the Expo Go app from the App Store (iOS) or Google Play (Android).
+2. Ensure your phone and computer are on the same Wi-Fi network.
+3. In the terminal, run `npx expo start`.
+4. Scan the QR code displayed in the terminal with your phone's camera.
 
-### 1️⃣ Na fizycznym telefonie (Zalecane)
-Jest to najlepszy sposób, aby poczuć płynność wizualizacji globu 3D:
-1. Zainstaluj aplikację **Expo Go** ze sklepu App Store (iOS) lub Google Play (Android).
-2. Upewnij się, że Twój telefon i komputer są w tej samej sieci Wi-Fi.
-3. W terminalu wpisz `npx expo start`.
-4. Zeskanuj aparatorem telefonu **kod QR**, który pojawi się w terminalu.
-
-### 2️⃣ Na emulatorze (Android/iOS)
-Jeśli masz skonfigurowane środowisko deweloperskie (Android Studio lub Xcode):
-1. Uruchom emulator na komputerze.
-2. W terminalu po wpisaniu `npx expo start`:
-   - Naciśnij klawisz **`a`**, aby uruchomić aplikację na Androidzie.
-   - Naciśnij klawisz **`i`**, aby uruchomić aplikację na iOS.
+### 2️⃣ On an emulator (Android/iOS)
+If you have a development environment set up (Android Studio or Xcode):
+1. Launch the emulator on your computer.
+2. After running `npx expo start` in the terminal::
+   - Press **`a`**, to run the app on Android.
+   - Press **`i`**, to run the app on iOS.
 
 > [!NOTE]
-> Ze względu na wykorzystanie **WebGL** do renderowania globu 3D, aplikacja działa znacznie płynniej na fizycznych urządzeniach niż na standardowych emulatorach.
+> Due to the use of WebGL for rendering the 3D globe, the application runs significantly smoother on physical devices than on standard emulators.
 
 
-## Źródła danych
+## Data Sources
 
-Aplikacja pobiera dane bezpośrednio z publicznych źródeł:
+The application fetches data directly from public sources:
 
 IOTA RPC: api.mainnet.iota.cafe (dane o sieci).
 
